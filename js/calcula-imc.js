@@ -38,11 +38,17 @@ if(altura <= 0 || altura >= 3.00){
 }
     
 if(alturaIstrue && pesoIsTrue){
-    var imc = peso / (altura*altura);
-    tdImc.textContent = imc.toFixed(2);
+    var imc = calculaImc(peso, altura)
+    tdImc.textContent = imc;
 }
 if(!alturaIstrue || !pesoIsTrue){
     tdImc.textContent = "Dados Inválidos";
     }
 }
 
+function calculaImc(peso, altura){
+    var imc = 0
+    imc = peso / (altura*altura);
+
+    return imc.toFixed(2)
+}
