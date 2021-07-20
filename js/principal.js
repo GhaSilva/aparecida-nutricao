@@ -24,12 +24,17 @@ var alturaIstrue = true;
 if(peso <= 0 || peso >= 1000){
     console.log("Peso Inválido");
     pesoIsTrue = false;
-    tdPeso.textContent = "Peso Inválido"
+    tdPeso.textContent = "Peso Inválido";
+    paciente.classList.add("paciente-invalido")
+
+
 }
 if(altura <= 0 || altura >= 3.00){
     console.log("Altura Inválida!");
     alturaIstrue = false;
-    tdAltura.textContent = "Altura Inválida"
+    tdAltura.textContent = "Altura Inválida";
+    paciente.classList.add("paciente-invalido")
+
 }
     
 if(alturaIstrue && pesoIsTrue){
