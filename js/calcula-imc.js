@@ -52,14 +52,28 @@ function validaPeso(peso){
     if(peso <= 0 || peso >= 1000){
         return false;
     }else{
+        var pesoErro = document.querySelector("#peso-erro");
+        pesoErro.textContent = "";
         return true;
     }
 }
 
 function validaAltura(altura){
-    if(altura >= 0 && altura <= 3.00){
-        return true;
+    if(altura < 0 || altura > 3.00 || altura == ""){
+        return false;
     }else{
-        return false
+        var alturaErro = document.querySelector("#altura-erro");
+        alturaErro.textContent = "";
+        return true;
+    }
+}
+
+function validaAltura(gordura){
+    if(gordura < 1 || altura > 100 || gordura == ""){
+        return false;
+    }else{
+        var gorduraErro = document.querySelector("#gordura-erro");
+        gorduraErro.textContent = "";
+        return true;
     }
 }

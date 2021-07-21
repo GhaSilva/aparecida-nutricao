@@ -1,24 +1,49 @@
 var botaoAdicionar = document.querySelector("#adicionar-paciente");
 botaoAdicionar.addEventListener("click", function(event){
     event.preventDefault();
-    
+
     var form = document.querySelector("#adiciona");
 
     var paciente = obtemPacienteDoFormulario(form);
 
     var pacienteTr = montaTr(paciente);
-    var mensagemErro = ""
+
+    console.log(validaPeso(paciente.peso));
+
+
+
 
     if(!validaPaciente(paciente)){
-        var mensagemErro = document.querySelector("#mensagem-erro");
-        mensagemErro.textContent = "Dados Inválidos";
+        if(!validaPeso(paciente.peso)){
+            var pesoErro = document.querySelector("#peso-erro");
+            pesoErro.textContent = "Peso inválido";
+            return
+        }
+        if(!validaAltura(paciente.altura)){
+            var alturaErro = document.querySelector("#altura-erro");
+            alturaErro.textContent = "Altura inválida";
+            return
+        }
+        if(paciente.nome == ""){
+            var nomeErro = document.querySelector("#nome-erro");
+            nomeErro.textContent = "Insira o nome";
+            return
+        }
+    
+        if(paciente.gordura == ""){
+            var gorduraErro = document.querySelector("#gordura-erro");
+            gorduraErro.textContent = "Percentual de gordura inválido(1 - 100)"
+            return
+        }
+        if(paciente.gordura <= 0 || paciente.gordura > 100){
+            var gorduraErro = document.querySelector("#gordura-erro");
+            gorduraErro.textContent = "Percentual de gordura inválido(1 - 100)";
+            return;
+        }
         return;
     }
-    if(validaPaciente(paciente)){
-        var mensagemErro = document.querySelector("#mensagem-erro");
-        mensagemErro.textContent = "";
-    }
 
+    console.log(paciente);
     //Adicionando o Paciente na tabela
     var tabela = document.querySelector("#tabela-pacientes");
 
@@ -64,10 +89,22 @@ function montaTd(dado,classe){
 function validaPaciente(paciente){
     if(validaPeso(paciente.peso)){
         if(validaAltura(paciente.altura)){
-            return true;
-        }
+            if(paciente.nome != ""){
+                var nomeErro = document.querySelector("#nome-erro");
+                nomeErro.textContent = "";
+                    if((paciente.gordura > 0 && paciente.gordura < 100) && paciente.gordura != ""){ 
+
+                         return true;  
+                }
+            
+        } 
     }
+}
     else{
         return false;
     }
+}
+
+function pacienteErro(paciente){
+
 }
